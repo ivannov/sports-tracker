@@ -3,7 +3,7 @@
   <persistence-unit name="sports-tracker" transaction-type="JTA">
     <description>Forge Persistence Unit</description>
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-    <jta-data-source>Default JDBC Database</jta-data-source>
+    <jta-data-source>HSQLDB Database</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
