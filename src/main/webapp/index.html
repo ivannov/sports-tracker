@@ -4,26 +4,11 @@
 <meta charset="UTF-8">
 <title>Football statistics</title>
 <script src="lib/angular.min.js"></script>
+<script src="lib/angular-route.min.js"></script>
 <script src="controllers/matches.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2 class="sub-header">List of all matches</h2>
-    <div ng-controller="MatchesCtrl">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Match</th>
-                <th>Result</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="match in matches">
-                <td>{{match.team1.name}} - {{match.team2.name}}</td>
-                <td>{{match.result.team1Score}}:{{match.result.team2Score}}</td>
-            </tr>
-            </tbody>
-        </table>   
-    </div>
+    <div ng-view></div>
 </body>
 </html>

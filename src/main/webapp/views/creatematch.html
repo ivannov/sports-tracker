@@ -1,0 +1,16 @@
+<h2>Create new match</h2>
+<form class="simple-form">
+	<table>
+		<tr>
+			<td>Home team: <select ng-model="team1"
+				ng-options="team.name for team in teams"></select></td>
+			<td>Away team: <select ng-model="team2"
+				ng-options="team.name for team in teams"></select></td>
+		</tr>
+		<tr>
+			<td><input type="text" ng-model="team1Score" value="male" /></td>
+			<td><input type="text" ng-model="team2Score" value="male" /></td>
+		</tr>
+	</table>
+	<button ng-click="createMatch()">Create</button>
+</form>

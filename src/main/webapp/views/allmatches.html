@@ -1,0 +1,17 @@
+
+<h2 class="sub-header">List of all matches</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Match</th>
+			<th>Result</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="match in matches">
+			<td>{{match.team1.name}} - {{match.team2.name}}</td>
+			<td>{{match.result.team1Score}}:{{match.result.team2Score}}</td>
+		</tr>
+	</tbody>
+</table>
