@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Football statistics</title>
-<script src="lib/angular.min.js"></script>
-<script src="lib/angular-route.min.js"></script>
-<script src="controllers/matches.js"></script>
+<script src="scripts/vendor/angular.js"></script>
+<script src="scripts/vendor/angular-route.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/leagues.js"></script>
+<script src="scripts/controllers/matches.js"></script>
+<script src="scripts/controllers/matchesinleague.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <div class="span10">Football statistics</div>
     <div ng-view></div>
 </body>
 </html>

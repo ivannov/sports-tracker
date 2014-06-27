@@ -1,0 +1,16 @@
+<h2 class="sub-header">Leagues, season 2014/2015</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>League</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="league in leagues">
+            <td>{{league.country}}</td>
+            <td><a ng-href="#/leagues/{{league.id}}">{{league.name}}</a></td>
+        </tr>
+    </tbody>
+</table>

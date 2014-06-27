@@ -1,24 +1,19 @@
 package org.ivko.tracker.model;
 
-import javax.persistence.Entity;
-
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
-
-import org.ivko.tracker.model.Team;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
-import java.lang.Override;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "TMATCH")
@@ -44,9 +39,11 @@ public class Match implements Serializable {
     private Team team2;
 
     @Column
-    @OneToOne(cascade = CascadeType.ALL)
-    private Result result;
-
+    private Integer team1Result;
+    
+    @Column
+    private Integer team2Result;
+    
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date matchDate;
@@ -54,10 +51,11 @@ public class Match implements Serializable {
     public Match() {
     }
 
-    public Match(Team team1, Team team2, Result result, Date matchDate) {
+    public Match(Team team1, Team team2, Integer team1Result, Integer team2Result, Date matchDate) {
         this.team1 = team1;
         this.team2 = team2;
-        this.result = result;
+        this.team1Result = team1Result;
+        this.team2Result = team2Result;
         this.matchDate = matchDate;
     }
 
@@ -126,12 +124,20 @@ public class Match implements Serializable {
         this.matchDate = matchDate;
     }
 
-    public Result getResult() {
-        return result;
+    public Integer getTeam1Result() {
+        return team1Result;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setTeam1Result(Integer team1Result) {
+        this.team1Result = team1Result;
+    }
+
+    public Integer getTeam2Result() {
+        return team2Result;
+    }
+
+    public void setTeam2Result(Integer team2Result) {
+        this.team2Result = team2Result;
     }
 
     @Override
