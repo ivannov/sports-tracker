@@ -1,27 +1,16 @@
 package org.ivko.tracker.model;
 
-import javax.persistence.Entity;
-
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
-
-import java.lang.Override;
-
-import org.ivko.tracker.model.Match;
-
-import java.util.Set;
-import java.util.HashSet;
-
-import javax.persistence.OneToMany;
-
-import org.ivko.tracker.model.Team;
-
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -50,9 +39,6 @@ public class League implements Serializable
 
    @Column
    private int endYear;
-
-   @OneToMany
-   private Set<Match> matches = new HashSet<Match>();
 
    @Column
    private int level;
@@ -159,16 +145,6 @@ public class League implements Serializable
    public void setEndYear(int endYear)
    {
       this.endYear = endYear;
-   }
-
-   public Set<Match> getMatches()
-   {
-      return this.matches;
-   }
-
-   public void setMatches(final Set<Match> matches)
-   {
-      this.matches = matches;
    }
 
    public int getLevel()

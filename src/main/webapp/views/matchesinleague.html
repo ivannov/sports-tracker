@@ -11,6 +11,7 @@
         <tr ng-repeat="match in matches">
             <td>{{match.team1.name}} - {{match.team2.name}}</td>
             <td>{{match.team1Result}}:{{match.team2Result}}</td>
+            <td>{{match.matchTime | date : 'dd MMM yyyy, HH:mm'}}</td>
         </tr>
     </tbody>
 </table>

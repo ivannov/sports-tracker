@@ -1,7 +1,6 @@
 package org.ivko.tracker.services;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -95,9 +94,9 @@ public class LeagueService {
     @GET
     @Path("/{id:[0-9][0-9]*}/matches")
     @Produces("application/json")
-    public Set<Match> listAllMatchesInLeague(@PathParam("id") Long leagueId,
+    public List<Match> listAllMatchesInLeague(@PathParam("id") Long leagueId,
             @QueryParam("start") Integer startPosition, @QueryParam("max") Integer maxResult) {
-        TypedQuery<League> findAllMatchesQuery = em.createQuery("SELECT l FROM League l LEFT JOIN FETCH l.matches WHERE l.id = :leagueId", League.class);
+        TypedQuery<Match> findAllMatchesQuery = em.createQuery("SELECT m FROM Match m WHERE m.league.id = :leagueId ORDER BY m.matchTime", Match.class);
         findAllMatchesQuery.setParameter("leagueId", leagueId);
         if (startPosition != null) {
             findAllMatchesQuery.setFirstResult(startPosition);
@@ -106,7 +105,7 @@ public class LeagueService {
             findAllMatchesQuery.setMaxResults(maxResult);
         }
         
-        return findAllMatchesQuery.getSingleResult().getMatches();
+        return findAllMatchesQuery.getResultList();
     }
     
     @GET

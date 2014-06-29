@@ -8,12 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "TMATCH")
@@ -43,20 +47,24 @@ public class Match implements Serializable {
     
     @Column
     private Integer team2Result;
-    
+ 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date matchDate;
+    private Date matchTime;
+    
+    @ManyToOne
+    private League league;
 
     public Match() {
     }
 
-    public Match(Team team1, Team team2, Integer team1Result, Integer team2Result, Date matchDate) {
+    public Match(Team team1, Team team2, Integer team1Result, Integer team2Result, League league, DateTime matchTime) {
         this.team1 = team1;
         this.team2 = team2;
         this.team1Result = team1Result;
         this.team2Result = team2Result;
-        this.matchDate = matchDate;
+        this.league = league;
+        this.matchTime = matchTime.toDate();
     }
 
     public Long getId() {
@@ -116,13 +124,22 @@ public class Match implements Serializable {
         this.team2 = team2;
     }
 
-    public Date getMatchDate() {
-        return this.matchDate;
+    public Date getMatchTime() {
+        return this.matchTime;
     }
 
-    public void setMatchDate(final Date matchDate) {
-        this.matchDate = matchDate;
+    public void setMatchTime(final Date matchTime) {
+        this.matchTime = matchTime;
     }
+    
+    @XmlTransient
+    public DateTime getJodaMatchTime() {
+        return new DateTime(matchTime.getTime());
+    }
+
+    public void setJodaMatchTime(final DateTime matchTime) {
+        this.matchTime = matchTime.toDate();
+    }    
 
     public Integer getTeam1Result() {
         return team1Result;
